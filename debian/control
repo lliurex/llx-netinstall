@@ -1,0 +1,22 @@
+Source: llx-netinstall
+Section: admin
+Priority: optional
+Maintainer: LliureX Team <lliurex@gva.es>
+Build-Depends: debhelper (>= 7),  n4d-dev
+Standards-Version: 3.9.5
+
+Package: llx-netinstall
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, n4d-dnsmasq (>= 1.41), apache2 | httpd, lliurex-preseed-common (>=0.18)
+Conflicts: lmd-server (<< 2.4.58)
+Replaces: lmd-server (<< 2.4.58)
+Description: lliurex network installation
+ Package to install pc from net image in server
+
+Package: admin-center-llx-netinstall
+Depends: ${misc:Depends}, admin-center
+Architecture: all
+Description: Netinstall Module for admin-center.
+ Netinstall allows you to install 
+ LliureX into clients via network.
+

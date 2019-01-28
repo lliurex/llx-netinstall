@@ -1,0 +1,443 @@
+llx-netinstall (0.63) bionic; urgency=high
+
+  * First bionic release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 28 Jan 2019 13:53:02 +0100
+
+llx-netinstall (0.62.1) xenial; urgency=high
+
+  * Adding || true in prerm when restarting apache
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Thu, 14 Jun 2018 14:20:28 +0200
+
+llx-netinstall (0.62) xenial; urgency=medium
+
+  * New option to allow install propietary packages
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 12 Mar 2018 18:25:31 +0100
+
+llx-netinstall (0.61) xenial; urgency=medium
+
+  * Fixed bug in es-ES i18n (admin-center module)
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 21 Jun 2017 16:14:50 +0200
+
+llx-netinstall (0.60) xenial; urgency=medium
+
+  * load_exports won't restart dnsmasq by default. 
+    zero-server-wizard's 999-final_operations will manage that.
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 25 Apr 2017 09:02:00 +0200
+
+llx-netinstall (0.59) xenial; urgency=medium
+
+  * Fixed blocking bug when installing without unattended option
+  * Increased password generation
+  * New mirror availability checking before showing netinstall options 
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 21 Feb 2017 14:58:32 +0100
+
+llx-netinstall (0.58) xenial; urgency=medium
+
+  * Enable infantil netinstall
+  * Fixed allow admin-center's empty password or username selecting unnatended netinstall
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 15 Feb 2017 11:39:55 +0100
+
+llx-netinstall (0.57-1) xenial; urgency=medium
+
+  * Disabled infantil flavour when statistics are enabled
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Thu, 02 Feb 2017 17:27:36 +0100
+
+llx-netinstall (0.57) xenial; urgency=medium
+
+  * Improved d-i-late-command & Infantil flavour disabled 
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 31 Jan 2017 13:50:59 +0100
+
+llx-netinstall (0.56.1) xenial; urgency=medium
+
+  * Fix bug in n4d methods
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Thu, 26 Jan 2017 16:05:28 +0100
+
+llx-netinstall (0.56) xenial; urgency=medium
+
+  * Remove admin center's options to control classroom analytics report agent
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Thu, 26 Jan 2017 11:54:22 +0100
+
+llx-netinstall (0.55-1) unreleased; urgency=medium
+
+  * Update minor cdebconf translations & rebuild initrd's
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 24 Jan 2017 10:38:19 +0100
+
+llx-netinstall (0.55) xenial; urgency=high
+
+  * Moved specific netinstall preseeds to a separated cfg file.
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 20 Jan 2017 11:37:24 +0100
+
+llx-netinstall (0.54.1) xenial; urgency=high
+
+  * Fixed i18n
+
+ -- Jose A. Murcia <joamuran@gmail.com>  Thu, 19 Jan 2017 11:49:11 +0100
+
+llx-netinstall (0.54) xenial; urgency=medium
+
+  * Refactoring: common preseed moved to lliurex-preseed
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 19 Jan 2017 10:07:05 +0100
+
+llx-netinstall (0.53.2) xenial; urgency=medium
+
+  [ M.Angel Juan ]
+  * Fixes possible bug when updating on older systems
+
+  [ Raul Rodrigo Segura ]
+  * Updated kernel and repo url
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Wed, 21 Dec 2016 16:08:54 +0100
+
+llx-netinstall (0.53.1) xenial; urgency=high
+
+  * Added module description and translation
+
+ -- Jose A. Murcia <joamuran@gmail.com>  Wed, 14 Dec 2016 11:00:10 +0100
+
+llx-netinstall (0.53) xenial; urgency=high
+
+  * Fixed banners and icons
+
+ -- Jose <joamuran@gmail.com>  Mon, 12 Dec 2016 18:50:24 +0100
+
+llx-netinstall (0.52-1) xenial; urgency=medium
+
+  * Update preseeds
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 07 Dec 2016 10:38:28 +0100
+
+llx-netinstall (0.52) xenial; urgency=medium
+
+  * Updated kernels to 4.4.0-38
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 05 Dec 2016 17:49:28 +0100
+
+llx-netinstall (0.51-wip) unreleased; urgency=medium
+
+  * Change template names
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 05 Dec 2016 16:25:10 +0100
+
+llx-netinstall (0.51) xenial; urgency=medium
+
+  * Fixed admin-center issues & restore partman template
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 05 Dec 2016 15:33:45 +0100
+
+llx-netinstall (0.50) xenial; urgency=medium
+
+  * Clean templates
+  * Add stats to netinstall
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 29 Nov 2016 13:43:33 +0100
+
+llx-netinstall (0.49) xenial; urgency=high
+
+  * Fixed admin-center module name: admin-center-lliurex-netinstall
+
+ --  <joamuran@gmail.com>  Mon, 14 Nov 2016 14:08:29 +0100
+
+llx-netinstall (0.48) xenial; urgency=high
+
+  * Added lmd-server conflict
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 14 Nov 2016 10:29:25 +0100
+
+llx-netinstall (0.47) xenial; urgency=high
+
+  * Added module for admin center
+
+ --  <jose@gmail.com>  Fri, 11 Nov 2016 15:00:51 +0100
+
+llx-netinstall (0.46) xenial; urgency=medium
+
+  * Included d-i-late-command script
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Fri, 21 Oct 2016 14:27:10 +0200
+
+llx-netinstall (0.45) xenial; urgency=medium
+
+  * Ported & tested into xenial
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Thu, 12 May 2016 10:15:50 +0200
+
+llx-netinstall (0.44) xenial; urgency=high
+
+  * Fixing postinst
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 08 Mar 2016 09:23:03 +0100
+
+llx-netinstall (0.43) xenial; urgency=high
+
+  * First xenial release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 02 Feb 2016 16:12:11 +0100
+
+llx-netinstall (0.42) trusty; urgency=high
+
+  * Updated net install without proxy 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 02 Jul 2015 14:50:21 +0200
+
+llx-netinstall (0.41) trusty; urgency=medium
+
+  * Prepared for new time 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 26 Jun 2015 14:45:19 +0200
+
+llx-netinstall (0.40) trusty; urgency=high
+
+  * Updated netinstall ifnames 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 26 Jun 2015 13:56:38 +0200
+
+llx-netinstall (0.39) trusty; urgency=high
+
+  * Updated version 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 26 Jun 2015 11:37:52 +0200
+
+llx-netinstall (0.38) trusty; urgency=high
+
+  * Updated preseed options
+  * Added amd64 installer
+
+ -- Miguel Angel <m.angel.juan@gmail.com>  Mon, 22 Jun 2015 12:35:45 +0200
+
+llx-netinstall (0.37) trusty; urgency=high
+
+  * Updated preseed for unattended total.	
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 19 Jun 2015 13:01:45 +0200
+
+llx-netinstall (0.36) trusty; urgency=high
+
+  * Update preseed and clients
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 19 Jun 2015 11:33:37 +0200
+
+llx-netinstall (0.34) trusty; urgency=high
+
+  * Updated preseed
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 19 Jun 2015 10:55:03 +0200
+
+llx-netinstall (0.33) trusty; urgency=high
+
+  * Updated debian/source/format to 1.0
+  * Updated preseed
+  * Updated things 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Mon, 15 Jun 2015 11:55:37 +0200
+
+llx-netinstall (0.32) trusty; urgency=high
+
+  [ Daniel Duran Vecino ]
+  * Change initrd, kernel to 3.16. Fixed network install.
+
+  [ Angel Berlanas Vicente ]
+  * Updated version 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Thu, 11 Jun 2015 10:01:04 +0200
+
+llx-netinstall (0.31) trusty; urgency=high
+
+  * added reload apache2
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 27 Oct 2014 13:47:51 +0100
+
+llx-netinstall (0.30) trusty; urgency=high
+
+  * Fixed package
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 06 Oct 2014 13:51:23 +0200
+
+llx-netinstall (0.28) trusty; urgency=high
+
+  * New releases for LliureX 15.05 (trusty)
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 01 Oct 2014 18:42:44 +0200
+
+llx-netinstall (0.27) precise; urgency=high
+
+  * Added busybox poweroff at the end of installation 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 04 Sep 2014 14:24:52 +0200
+
+llx-netinstall (0.26) precise; urgency=high
+
+  * Added unattended.cfg template to solve the "import" missing
+    if not setted at the first time. 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Mon, 01 Sep 2014 12:15:32 +0200
+
+llx-netinstall (0.25) precise; urgency=high
+
+  * Added apache2 dependence
+  * Postinst or true at enable site 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 02 Jul 2014 11:04:27 +0200
+
+llx-netinstall (0.24) precise; urgency=high
+
+  * Updated partman recipe for unattended install
+
+ -- Francisco Javier Estellés Dasí <xaviestelles@gmail.com>  Mon, 23 Jun 2014 11:26:30 +0200
+
+llx-netinstall (0.23) precise; urgency=high
+
+  * Removed lliurex-musica from netinstall (for now) 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 29 May 2014 12:55:53 +0200
+
+llx-netinstall (0.22) precise; urgency=high
+
+  * Updated flavoured preseed files with one line include
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 28 May 2014 14:03:53 +0200
+
+llx-netinstall (0.21) precise; urgency=high
+
+  * Added Unattended installation
+  * Added pime installation 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 28 May 2014 11:53:20 +0200
+
+llx-netinstall (0.20) precise; urgency=high
+
+  * Updated with llx1406 mirror on d-i
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Mon, 05 May 2014 11:59:12 +0200
+
+llx-netinstall (0.19) precise; urgency=high
+
+  * Updated preseed with proxy
+  * Updated dependences 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 30 Oct 2013 09:41:58 +0100
+
+llx-netinstall (0.18) precise; urgency=high
+
+  * Updated preseed with security
+  * Updated preseed with allow-weak-password
+  * Updated preseed syntax
+  * Updated preseed with disable backports 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 30 Oct 2013 08:46:51 +0100
+
+llx-netinstall (0.17) precise; urgency=high
+
+  * Infantil preseed fixed (string string missing)
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 30 Oct 2013 08:46:49 +0100
+
+llx-netinstall (0.16) precise; urgency=high
+
+  * Jestelles modification of apt-setup
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 22 Oct 2013 13:01:30 +0200
+
+llx-netinstall (0.15) precise; urgency=low
+
+  * Changed default client name installation 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Tue, 24 Sep 2013 14:05:52 +0200
+
+llx-netinstall (0.14) precise; urgency=low
+
+  * Fixed not reboot after installation 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Wed, 28 Aug 2013 15:09:14 +0200
+
+llx-netinstall (0.13) precise; urgency=low
+
+  * The machine reboot when finish installation 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Wed, 24 Jul 2013 13:47:34 +0200
+
+llx-netinstall (0.12) precise; urgency=low
+
+  * Modified with name resolve
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Fri, 19 Jul 2013 12:00:49 +0200
+
+llx-netinstall (0.11) precise; urgency=high
+
+  * updated version
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Wed, 17 Jul 2013 09:42:50 +0200
+
+llx-netinstall (0.10) precise; urgency=low
+
+  * changed mirror directory 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Wed, 17 Jul 2013 09:41:41 +0200
+
+llx-netinstall (0.9) precise; urgency=low
+
+  * added more options to preseed 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Tue, 16 Jul 2013 15:41:23 +0200
+
+llx-netinstall (0.8) precise; urgency=low
+
+  * Added nd4 to build-depends
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Mon, 15 Jul 2013 13:17:36 +0200
+
+llx-netinstall (0.7) precise; urgency=low
+
+  * added n4d vars
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Mon, 15 Jul 2013 12:15:02 +0200
+
+llx-netinstall (0.6) precise; urgency=low
+
+  * added n4d init scripts 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Mon, 15 Jul 2013 12:02:01 +0200
+
+llx-netinstall (0.5) precise; urgency=low
+
+  * Removed apache reload from postinstall 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Thu, 11 Jul 2013 13:55:09 +0200
+
+llx-netinstall (0.4) precise; urgency=low
+
+  * Fixed ip to get preseed file 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Mon, 08 Jul 2013 23:53:19 +0200
+
+llx-netinstall (0.3) precise; urgency=low
+
+  * Fixed bugs
+  * added options to be unnatended 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Mon, 08 Jul 2013 23:08:42 +0200
+
+llx-netinstall (0.2) precise; urgency=low
+
+  * fixed apache site 
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Mon, 08 Jul 2013 13:58:21 +0200
+
+llx-netinstall (0.1) precise; urgency=low
+
+  * First release
+ 
+ -- David Montalva Furio <montalva_dav@gva.es>  Mon, 08 Jul 2014 12:00:58 +0200
