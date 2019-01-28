@@ -1,0 +1,12 @@
+{
+  "id": "lliurex-netinstall",
+  "version": "0.1",
+  "name": "LliureX Netinstall",
+  "description": "llx-netinstall-description",
+  "main":"main.html",
+  "icon":"NetinstallIcon.png",
+  "banner":"NetinstallBanner.png",
+  "components": [ ]
+}
+
+

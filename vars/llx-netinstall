@@ -1,0 +1,12 @@
+{
+	"INTERNAL_DOMAIN": {
+		"packages": [
+			"llx-netinstall"
+		]
+	},
+	"SRV_IP": {
+		"packages": [
+			"llx-netinstall"
+		]
+	}
+}

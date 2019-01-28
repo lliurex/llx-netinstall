@@ -1,0 +1,28 @@
+{
+  "messages" : {
+    "" : {
+      "domain" : "lliurex-netinstall",
+      "lang"   : "ca_ES@valencia",
+      "plural_forms" : "nplurals=2; plural=(n != 1);"
+    },
+     "lliurex_netinstall_enable_netinstall":["Habilita la instal·lació per xarxa"],
+     "lliurex_netinstall_enable_unattended":["Fes una instal·lació desatesa"],
+     "lliurex_netinstall_enable_nongpl_apps":["Habilita la instal·lació de paquets no lliures"],
+     "lliurex_netinstall_nongpl_description":["Utilitzant esta opció acceptes totes les llicències del fabricant del producte"],
+     "lliurex_netinstall_agreement_title":["Aceptació de licencies"],
+     "lliurex_netinstall_enable_stats": ["Habilita l'enviament d'estadistiques als desenvolupadors"],
+     "lliurex_netinstall_username":["Usuari"],
+     "lliurex_netinstall_pass":["Contrasenya"],
+     "lliurex_netinstall_rootpass":["Contrasenya d'administració"],
+     "lliurex_netinstall_name":["Instal·lació de LliureX a través de la xarxa"],
+     "llx_netinstall_apply_config":["Aplica"],
+     "llx_netinstall_error":["S'ha produït l'error següent en configurar la instal·lació per xarxa: "],
+     "llx_netinstall_no_user":["El nom d'usuari o contrasenya no poden ser cadenes buides "],
+     "llx_netinstall_success":["S'ha configurat correctament la instal·lació d'equips per xarxa"],
+     "llx_netinstall_mirror_unavailable":["No hi ha disponible cap rèplica de LliureX per a fer la instal·lació per xarxa"],
+     "llx-netinstall-description":["Habiliteu i configureu la instal·lació per xarxa"]
+     
+     
+    
+}
+}

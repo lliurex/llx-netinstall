@@ -1,0 +1,3 @@
+d-i preseed/include string lliurex-cdd-common.cfg unattended.cfg
+ldap-auth-config ldap-auth-config/ldapns/ldap-server string ldap://127.0.0.1/
+d-i pkgsel/include string lliurex-meta-infantil

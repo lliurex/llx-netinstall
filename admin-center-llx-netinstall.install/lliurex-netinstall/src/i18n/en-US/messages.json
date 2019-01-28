@@ -1,0 +1,27 @@
+{
+  "messages" : {
+    "" : {
+      "domain" : "lliurex-netinstall",
+      "lang"   : "en-US",
+      "plural_forms" : "nplurals=2; plural=(n != 1);"
+    },
+     "lliurex_netinstall_enable_netinstall":["Enable network installation"],
+     "lliurex_netinstall_enable_unattended":["Enable unattended install"],
+     "lliurex_netinstall_enable_nongpl_apps":["Enable non free package installation"],
+     "lliurex_netinstall_nongpl_description":["Using this option, you agree with all propietary licenses of the product owner"],
+     "lliurex_netinstall_agreement_title":["License agreement"],
+     "lliurex_netinstall_enable_stats": ["Enable send stats to developers"],
+     "lliurex_netinstall_username":["Username"],
+     "lliurex_netinstall_pass":["Password"],
+     "lliurex_netinstall_rootpass":["Root password"],
+     "lliurex_netinstall_name":["LliureX Network installation"],
+     "llx_netinstall_apply_config":["Apply"],
+     "llx_netinstall_error":["Network install has produced the error: "],
+     "llx_netinstall_no_user":["Username or Password can't be an empty string"],
+     "llx_netinstall_success":["Network install has been configured"],
+     "llx_netinstall_mirror_unavailable":["There is no any LliureX Mirror for network installation"],
+     "llx-netinstall-description":["Allows and configure network installation"]
+     
+  }
+}
+    

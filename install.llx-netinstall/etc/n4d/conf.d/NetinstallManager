@@ -1,0 +1,15 @@
+[SETUP]
+type=python
+path=NetinstallManager.py
+class=NetinstallManager
+[METHODS]
+test=*,anonymous
+backup=adm,admins
+restore=adm,admins
+load_exports=adm,admins
+getNetinstall=*,anonymous
+setNetinstall=adm,admins
+setNetinstallUnattended=adm,admins
+get_force_classroom_stats=adm,admins
+set_force_classroom_stats=adm,admins
+install_nongpl=adm,admins

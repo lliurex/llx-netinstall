@@ -1,0 +1,26 @@
+{
+  "messages" : {
+    "" : {
+      "domain" : "lliurex-netinstall",
+      "lang"   : "es-ES",
+      "plural_forms" : "nplurals=2; plural=(n != 1);"
+    },
+     "lliurex_netinstall_enable_netinstall":["Habilita la instalación por red"],
+     "lliurex_netinstall_enable_unattended":["Realiza una instalación desatendida"],
+     "lliurex_netinstall_enable_nongpl_apps":["Habilita instalacion de paquetes no libres"],
+     "lliurex_netinstall_agreement_title":["Aceptación de licencias"],
+     "lliurex_netinstall_nongpl_description":["Utilizando esta opción aceptas todas las licencias del fabricante del producto"],
+     "lliurex_netinstall_enable_stats": ["Habilita envio de estadisticas al equipo de desarrollo"],
+     "lliurex_netinstall_username":["Usuario"],
+     "lliurex_netinstall_pass":["Contraseña"],
+     "lliurex_netinstall_rootpass":["Contraseña de administración"],
+     "lliurex_netinstall_name":["Instalación de equipos por de de LliureX"],
+     "llx_netinstall_apply_config":["Aplica"],
+     "llx_netinstall_error":["Se produjo el siguiente error en configurar la instalación por red: "],
+     "llx_netinstall_no_user":["El nombre de usuario o passwords no pueden ser cadenas vacias "],
+     "llx_netinstall_success":["Se configuró correctamente la instalación de equipos por red"],
+     "llx_netinstall_mirror_unavailable":["No se encuentra una réplica de LliureX para realizar la instalación por red"],
+     "llx-netinstall-description":["Habilitar y configurar la instalación por red"]
+}
+}
+

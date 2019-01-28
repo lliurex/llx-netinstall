@@ -1,0 +1,4 @@
+#user-setup-udeb	passwd/user-fullname	string	lliurex
+#user-setup-udeb	passwd/username	string	lliurex
+#user-setup-udeb	passwd/user-password	string	lliurex
+#user-setup-udeb	passwd/user-password-again	string	lliurex
