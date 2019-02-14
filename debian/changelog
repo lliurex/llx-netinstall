@@ -1,3 +1,9 @@
+llx-netinstall (0.64) bionic; urgency=medium
+
+  * Adding sudo group to n4d plugin
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 14 Feb 2019 09:22:44 +0100
+
 llx-netinstall (0.63) bionic; urgency=high
 
   * First bionic release
