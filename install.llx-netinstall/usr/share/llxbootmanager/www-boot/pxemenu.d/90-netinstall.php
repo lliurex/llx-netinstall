@@ -15,7 +15,7 @@ if (strtolower($json["netinstall_boot"])=="true"&&$mirror_installed==True){
    $MenuEntry->label="Instal·la LliureX en aquest ordinador";
    $MenuEntry->menuString="";
 
-   $dir=scandir('/var/www/mirror/llx16/dists/xenial/main/');
+   $dir=scandir('/var/www/mirror/llx19/dists/bionic/main/');
 
    $put_x86=false;
    $put_amd64=false;
