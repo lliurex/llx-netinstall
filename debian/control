@@ -14,7 +14,7 @@ Description: lliurex network installation
  Package to install pc from net image in server
 
 Package: admin-center-llx-netinstall
-Depends: ${misc:Depends}, admin-center
+Depends: ${misc:Depends}, admin-center, n4d-lliurex-mirror
 Architecture: all
 Description: Netinstall Module for admin-center.
  Netinstall allows you to install 
