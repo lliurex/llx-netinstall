@@ -1,9 +1,9 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: kk
-Source: https://svn.lliurex.net/trusty/llx-netinstall/trunk/fuentes
+Upstream-Name: llx-netinstall
+Source: https://github.com/lliurex/llx-netinstall
 
 Files: *
-Copyright: 2014 Raul Rodrigo Segura <raurodse@gmail.com>
+Copyright: 2019 M.Angel Juan <m.angel.juan@gmail.com>
 License: GPL-3.0+
 
 License: GPL-3.0+

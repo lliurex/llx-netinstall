@@ -1,3 +1,12 @@
+llx-netinstall (1.0.0) bionic; urgency=medium
+
+  * Changed dependencies
+  * Cleanup splitting into multiple packages
+  * Added integration with distro packages ipxe, pxeboot, syslinux-common, lliurex-preseed
+  * Updated to newer kernel for bionic
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 10 Apr 2019 16:52:35 +0200
+
 llx-netinstall (0.65) bionic; urgency=medium
 
   * Change bionic hardcoded strings & paths

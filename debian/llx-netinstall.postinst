@@ -9,7 +9,7 @@ case $1 in
 		fi
 
 		if [ ! -L  /var/www/preseed ]; then
-			ln -s /usr/share/llx-netinstall/templates /var/www/preseed
+			ln -s /usr/share/netinstall-seeds /var/www/preseed
 		fi
 		invoke-rc.d apache2 reload || true
         ;;
