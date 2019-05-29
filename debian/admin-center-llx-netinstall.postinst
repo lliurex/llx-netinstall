@@ -4,6 +4,20 @@ set -e
 case $1 in
         configure)
 		systemctl restart n4d || true
+		filename="preview.png"
+		prev_def="/usr/share/plasma/look-and-feel/lliurex-desktop/contents/previews"
+		prev_classic="/usr/share/plasma/lliurex-desktop-classic/contents/previews"
+		destination="/usr/share/admin-center/modules/lliurex-netinstall/src/icons"
+		if [ -f "${prev_def}/${filename}" ]; then
+		    if [ ! -L "${destination}/default.png" ]; then
+		        ln -s ${prev_def}/${filename} ${destination}/default.png
+		    fi
+		fi
+		if [ -f "${prev_classic}/${filename}" ]; then
+		    if [ ! -L "${destination}/classic.png" ]; then
+		        ln -s ${prev_def}/${filename} ${destination}/classic.png
+		    fi
+		fi
         ;;
 	abort-upgrade|abort-remove|abort-deconfigure)
 	;;

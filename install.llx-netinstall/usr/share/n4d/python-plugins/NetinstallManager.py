@@ -124,17 +124,23 @@ class NetinstallManager:
 			data['nongplapps']='false';
 		else:
 			nongplapps='true';
+		
+		if ("normal_install" not in data.keys() or data["normal_install"].lower() == "false"):
+		        normal_install='false';
+		        data['normal_install']='false';
+		else:
+		        normal_install='true';
 		#write the json file
-		ret=self.setNetinstall(data["netinstall_boot"].lower(),data["netinstall_unattended"].lower(),data["netinstall_stats"].lower(),data["nongplapps"].lower())
+		ret=self.setNetinstall(data["netinstall_boot"].lower(),data["netinstall_unattended"].lower(),data["netinstall_stats"].lower(),data["nongplapps"].lower(),data["normal_install"].lower())
 		if ret['status'].lower() != 'true':
 		    raise Exception('Error setting json file calling setNetinstall')
 		
-		return {"netinstall":netinstall, "unattended":unattended, "stats": do_stats, 'nongplapps':nongplapps}
+		return {"netinstall":netinstall, "unattended":unattended, "stats": do_stats, 'nongplapps':nongplapps, 'normal_install':normal_install}
 			
 			
 	# END def GetNetInstall
 
-	def setNetinstall(self, status, unattended, stats, nongplapps):
+	def setNetinstall(self, status, unattended, stats, nongplapps, type_install):
 		'''
 		receives data from admin-center form
 		sets option for netinstall int bootopt.json (status and unattended install)
@@ -145,7 +151,7 @@ class NetinstallManager:
 				if (status.lower()=="true" or status.lower()=="false"):
 					path_to_write = os.path.join(self.imagepath,"netinstall.json")
 					f = open(path_to_write,'w')
-					data='{"netinstall_boot":"'+str(status)+'", "netinstall_unattended":"'+str(unattended)+'", "netinstall_stats":"'+str(stats)+'","nongplapps":"'+str(nongplapps)+'"}'
+					data='{"netinstall_boot":"'+str(status)+'", "netinstall_unattended":"'+str(unattended)+'", "netinstall_stats":"'+str(stats)+'","nongplapps":"'+str(nongplapps)+'"'+',"normal_install":"'+type_install+'"}'
 					f.writelines(data)
 					f.close()
 					
@@ -241,6 +247,30 @@ class NetinstallManager:
 	        return {'status':"False",'msg': str(e)}
 	        
 	# END def install_nongpl(self, do):
+	
+	def set_desktop_type(self, thin=False):
+	    if isinstance(thin,bool):
+	        thin=str(thin).lower()
+	    elif isinstance(thin,str):
+	        thin=thin.lower()
+	    else:
+	        thin="false"
+
+	    filedir="/var/www/preseed"
+	    filename="extra-commands.netinstall"
+	    file=filedir+'/'+filename
+	    if thin == 'true':
+	        line="in-target sh -c 'llx-desktop-layout set classic || (touch /llx-desktop-layout-not-found; echo true > /llx-desktop-layout-not-found)'"
+	    else:
+	        line="in-target sh -c 'llx-desktop-layout set default || (touch /llx-desktop-layout-not-found; echo false > /llx-desktop-layout-not-found)'"
+	    try:
+	        with open(file,'w') as fp:
+	            fp.write(line)
+	        return {'status':"True",'msg': 'Ok'}
+	    except Exception as e:
+	        return {'status':"False",'msg': str(e)}
+	        
+	# END def set_desktop_type(self, thin):
 	
 	def setNetinstallUnattended(self, status, username, password, rootpassword):
 		'''

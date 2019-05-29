@@ -3,6 +3,8 @@ function LlxNetinstall(){
    this.unattended_netinstall=false;
    this.netinstall_stats=true;
    this.nongplapps=false;
+   this.normal_install=true;
+   this.light_install=false;
 }
 
 LlxNetinstall.prototype._=function _(text){
@@ -25,13 +27,20 @@ LlxNetinstall.prototype.getNetinstallConfig=function getNetinstallConfig(){
       response.unattended == 'true' ? self.unattended_netinstall=true : self.unattended_netinstall=false;
       response.stats == 'true' ? self.netinstall_stats=true : self.netinstall_stats=false;
       response.nongplapps == 'true' ? self.nongplapps=true : self.nongplapps=false;
+      if (response.normal_install == 'true'){
+            self.normal_install=true;
+            self.light_install=false;
+      }else{
+            self.normal_install=false;
+            self.light_install=true;
+      }
       self.showUI();   
    },0);
 }
 
 LlxNetinstall.prototype.set_nongplapps=function set_nongplapps(status){
    var self=this;
-   
+ 
    credentials=[sessionStorage.username, sessionStorage.password];
    n4dclass="NetinstallManager";
    n4dmethod="install_nongpl";
@@ -42,6 +51,22 @@ LlxNetinstall.prototype.set_nongplapps=function set_nongplapps(status){
    }
    Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
       console.log('SetNonGPL '+response);
+   },0);
+}
+
+LlxNetinstall.prototype.set_desktop_type=function set_desktop_type(status){
+   var self=this;
+ 
+   credentials=[sessionStorage.username, sessionStorage.password];
+   n4dclass="NetinstallManager";
+   n4dmethod="set_desktop_type";
+   if (status == true){
+        arglist=['true'];
+   }else{
+        arglist=['false'];
+   }
+   Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
+      console.log('SetDesktoptypeLight='+status+' '+response);
    },0);
 }
 
@@ -91,7 +116,9 @@ LlxNetinstall.prototype.showUI=function showUI(){
    var netinstallunattendeddisabled="";
    var netinstall_stats="";
    var netinstall_enable_nongpl="";
-   
+   var netinstall_normal_install="";
+   var netinstall_light_install="";
+
    if (self.nongplapps === true){
         netinstall_enable_nongpl="checked";
    }
@@ -105,12 +132,21 @@ LlxNetinstall.prototype.showUI=function showUI(){
    }else{
       netinstallunattendeddisabled="disabled";
    }
-   
+
    if (self.unattended_netinstall===true) {
       netinstallunattended="checked";
       netinstalldataunattended="";
-   } else netinstalldataunattended="true";
-   
+   } else {
+      netinstalldataunattended="true";
+   }
+
+   if (self.normal_install===true){
+        netinstall_normal_install="checked";
+        netinstall_light_install="";
+   }else{
+        netinstall_normal_install="";
+        netinstall_light_install="checked";
+   } 
    content+=Utils.formFactory.createCheckbox({"id":"llx_netinstall_setnetinstall",
                                                 "label":self._("lliurex_netinstall_enable_netinstall"),
                                                 "default":netinstallchecked,
@@ -153,17 +189,76 @@ LlxNetinstall.prototype.showUI=function showUI(){
                                               "disabled": "",
                                               "help":self._("lliurex_netinstall_enable_stats")},false);
 
+   content+=Utils.formFactory.createCheckbox({"id":"llx_netinstall_normal_install",
+                                                "label": self._("lliurex_checkbox_normal_install"),
+                                                "default":netinstall_normal_install,
+                                                "disabled":"",
+                                                "help":self._("lliurex_netinstall_help_normal_install")},true);
+   content+=Utils.formFactory.createCheckbox({"id":"llx_netinstall_light_install",
+                                                "label": self._("lliurex_checkbox_light_install"),
+                                                "default":netinstall_light_install,
+                                                "disabled":"",
+                                                "help":self._("lliurex_netinstall_help_light_install")},true);
    
+
+
    $("#llx_netinstall_config").append(content);
    
    
    $.material.init();
    
-   
-   
+   function add_image_to_checkbox(box){
+        var image_class='image_'+box;
+        var container_image=$('#'+box).parent().parent();
+        container_image.append("<div class='"+image_class+"' />");
+        $('.'+image_class).css({"height":"200px","width":"360px","margin-left":"auto"});
+        if ($('#'+box).prop("checked") == true){
+            $('.'+image_class).css({"border":"1px solid red"});
+        }
+        $('.'+image_class).css({"background-color":"lightgray"});
+        var line_container_image=container_image.parent().parent();
+        line_container_image.css({"display":"flex","align-items":"center"});
+        container_image.css({"display":"flex","align-items":"center"});
+        container_image.parent().css({"width":"100%"});
+   };
+
+   function put_border(){
+        if (self.normal_install){
+            $(".image_llx_netinstall_normal_install").css({"border":"1px solid red"})
+        }else{
+            $(".image_llx_netinstall_normal_install").css({"border":"none"})
+        }
+        if (self.light_install){
+            $(".image_llx_netinstall_light_install").css({"border":"1px solid red"})
+        }else{
+            $(".image_llx_netinstall_light_install").css({"border":"none"})
+        }
+   }
+   add_image_to_checkbox("llx_netinstall_normal_install");
+   add_image_to_checkbox("llx_netinstall_light_install");
+
    // Event binding
    $("#llx_netinstall_apply_config").show();
-   
+
+   $("#llx_netinstall_normal_install,.image_llx_netinstall_normal_install").on("click",function(){
+            $("#llx_netinstall_light_install").prop("checked",false);
+            $("#llx_netinstall_normal_install").prop("checked",true);
+            //console.log("Normal clicked");
+            self.normal_install=true;
+            self.light_install=false;
+            put_border();
+        }
+    );
+    $("#llx_netinstall_light_install,.image_llx_netinstall_light_install").on("click",function(){
+            $("#llx_netinstall_normal_install").prop("checked",false);
+            $("#llx_netinstall_light_install").prop("checked",true);
+            //console.log("Light clicked");
+            self.normal_install=false;
+            self.light_install=true;
+            put_border();
+        }
+    );
+ 
    $("#llx_netinstall_enable_nongpl_apps").on("click", function(){
             if ($('#llx_netinstall_enable_nongpl_apps').prop('checked') == true){
                 //show message
@@ -244,11 +339,11 @@ LlxNetinstall.prototype.showUI=function showUI(){
       var n4dclass="NetinstallManager";
       var n4dmethod="setNetinstall";
 
-      var arglist=[self.netinstall.toString(), self.unattended_netinstall.toString(), self.netinstall_stats.toString(), self.nongplapps.toString()];
+      var arglist=[self.netinstall.toString(), self.unattended_netinstall.toString(), self.netinstall_stats.toString(), self.nongplapps.toString(), self.normal_install.toString()];
       console.log('Setting netinstall '+arglist);
       var test=arglist;
       self.set_nongplapps(self.nongplapps);
-      
+      self.set_desktop_type(self.light_install);
       
       Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
          
