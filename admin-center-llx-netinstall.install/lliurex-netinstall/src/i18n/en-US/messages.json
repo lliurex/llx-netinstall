@@ -20,8 +20,11 @@
      "llx_netinstall_no_user":["Username or Password can't be an empty string"],
      "llx_netinstall_success":["Network install has been configured"],
      "llx_netinstall_mirror_unavailable":["There is no any LliureX Mirror for network installation"],
-     "llx-netinstall-description":["Allows and configure network installation"]
-     
+     "llx-netinstall-description":["Allows and configure network installation"],
+     "lliurex_checkbox_normal_install":["Use standard graphic environment"],
+     "lliurex_netinstall_help_normal_install":["Graphic environment with default layout"],
+     "lliurex_checkbox_light_install":["Use traditional graphic environment"],
+     "lliurex_netinstall_help_light_install":["Graphical environment with traditional layout like other versions"]
   }
 }
-    
+     

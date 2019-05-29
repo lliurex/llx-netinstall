@@ -4,10 +4,22 @@
 
 $mirror_var="/var/lib/n4d/variables-dir/LLIUREXMIRROR";
 if (is_file($mirror_var) ) $mirror_installed=True; else $mirror_installed=False;
+$filename="/etc/ltsp/bootopts/netinstall.json";
+$type_install='';
 
-$string = file_get_contents("/etc/ltsp/bootopts/netinstall.json");
+if (is_file($filename)){
+    $content_json=file_get_contents($filename);
+    $json=json_decode($content_json,true);
+    if(isset($json->{'normal_install'})){
+        if ($json["normal_install"] == "true"){
+            $type_install='normal';
+        }else{
+            $type_install='light';
+        }
+    }
+}
 
-$json=json_decode($string,true);
+
 if (strtolower($json["netinstall_boot"])=="true"&&$mirror_installed==True){
    $MenuEntryList=array();
    $MenuEntry=new stdClass();
@@ -43,7 +55,7 @@ CONFIG pxe-ltsp/netinstall/ubuntu-installer/i386/$str_pxelinux/default pxe-ltsp/
 }
 
 if ($put_amd64){
-   $MenuEntry->menuString.="\n# Netinst: Install Menuu
+   $MenuEntry->menuString.="\n# Netinst: Install Menu
 LABEL Instal.la LliureX en aquest ordinador amd64
 MENU LABEL Instal.la LliureX en aquest ordinador amd64
 KERNEL pxe-ltsp/netinstall/ubuntu-installer/amd64/boot-screens/vesamenu.c32

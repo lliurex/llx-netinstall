@@ -20,7 +20,11 @@
      "llx_netinstall_no_user":["El nombre de usuario o passwords no pueden ser cadenas vacias "],
      "llx_netinstall_success":["Se configuró correctamente la instalación de equipos por red"],
      "llx_netinstall_mirror_unavailable":["No se encuentra una réplica de LliureX para realizar la instalación por red"],
-     "llx-netinstall-description":["Habilitar y configurar la instalación por red"]
+     "llx-netinstall-description":["Habilitar y configurar la instalación por red"],
+     "lliurex_checkbox_normal_install":["Uso de un entorno gráfico estandar"],
+     "lliurex_netinstall_help_normal_install":["Entorno estandar con la apariencia por defecto"],
+     "lliurex_checkbox_light_install":["Uso de un entorno gráfico con la apariencia tradicional"],
+     "lliurex_netinstall_help_light_install":["Entorno con apariencia tradicional de otras versiones"]
 }
 }
 

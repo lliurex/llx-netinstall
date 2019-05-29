@@ -13,3 +13,4 @@ setNetinstallUnattended=sudo,admins
 get_force_classroom_stats=sudo,admins
 set_force_classroom_stats=sudo,admins
 install_nongpl=sudo,admins
+set_desktop_type=sudo,admins

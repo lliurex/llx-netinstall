@@ -20,9 +20,10 @@
      "llx_netinstall_no_user":["El nom d'usuari o contrasenya no poden ser cadenes buides "],
      "llx_netinstall_success":["S'ha configurat correctament la instal·lació d'equips per xarxa"],
      "llx_netinstall_mirror_unavailable":["No hi ha disponible cap rèplica de LliureX per a fer la instal·lació per xarxa"],
-     "llx-netinstall-description":["Habiliteu i configureu la instal·lació per xarxa"]
-     
-     
-    
+     "llx-netinstall-description":["Habiliteu i configureu la instal·lació per xarxa"],
+     "lliurex_checkbox_normal_install":["Us d'un entorn gràfic estàndard"],
+     "lliurex_netinstall_help_normal_install":["Entorn estàndard amb l'aparença per defecte"],
+     "lliurex_checkbox_light_install":["Us d'un entorn gràfic amb l'aparença tradicional"],
+     "lliurex_netinstall_help_light_install":["Entorn amb l'aparença tradicional de altres versions"]
 }
 }
