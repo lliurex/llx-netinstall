@@ -1,3 +1,9 @@
+llx-netinstall (1.0.6) bionic; urgency=medium
+
+  * fix css typo error
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Fri, 07 Jun 2019 14:58:11 +0200
+
 llx-netinstall (1.0.5) bionic; urgency=medium
 
   * fix css image size
