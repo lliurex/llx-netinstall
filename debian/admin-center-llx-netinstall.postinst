@@ -15,7 +15,7 @@ case $1 in
 		fi
 		if [ -f "${prev_classic}/${filename}" ]; then
 		    if [ ! -L "${destination}/classic.png" ]; then
-		        ln -s ${prev_def}/${filename} ${destination}/classic.png
+		        ln -s ${prev_classic}/${filename} ${destination}/classic.png
 		    fi
 		fi
         ;;
