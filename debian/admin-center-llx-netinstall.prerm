@@ -20,11 +20,11 @@ set -e
 case "$1" in
     remove|upgrade|deconfigure)
             destination="/usr/share/admin-center/modules/lliurex-netinstall/src/icons"
-            if [ ! -L "${destination}/default.png" ]; then
-                rm ${destination}/default.png
+            if [ -L "${destination}/default.png" ]; then
+                rm -f ${destination}/default.png || true
             fi
-            if [ ! -L "${destination}/classic.png" ]; then
-                rm ${destination}/classic.png
+            if [ -L "${destination}/classic.png" ]; then
+                rm -f ${destination}/classic.png || true
             fi
     ;;
 
