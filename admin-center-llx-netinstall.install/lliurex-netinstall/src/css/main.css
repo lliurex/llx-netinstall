@@ -1,10 +1,10 @@
 .image_llx_netinstall_normal_install {
-    background-image: url('../icons/default.png')
+    background-image: url('../icons/default.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
 .image_llx_netinstall_light_install {
-    background-image: url('../icons/classic.png')
+    background-image: url('../icons/classic.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
