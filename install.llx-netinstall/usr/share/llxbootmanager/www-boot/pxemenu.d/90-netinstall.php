@@ -26,53 +26,38 @@ if (strtolower($json["netinstall_boot"])=="true"&&$mirror_installed==True){
    $MenuEntry->id="netinstall";
    $MenuEntry->label="Instal·la LliureX en aquest ordinador";
    $MenuEntry->menuString="";
-
-   $dir=scandir('/var/www/mirror/llx19/dists/bionic/main/');
-
-   $put_x86=false;
-   $put_amd64=false;
-   foreach ($dir as $item){
-	if ($item == 'binary-i386')
-	    $put_x86=true;
-	if ($item == 'binary-amd64')
-	    $put_amd64=true;
+   $dirname = '/var/www/mirror/llx19/dists/bionic/main/';
+   $dir=false;
+   if (is_dir($dirname)){
+        $dir=scandir($dirname);
    }
+   if ($dir != false){    
+        $put_amd64=false;
+        foreach ($dir as $item){
+	    if ($item == 'binary-amd64')
+	        $put_amd64=true;
+        }
+  
+        $str_pxelinux="";
+        if (strtolower($json["netinstall_stats"])=="true"){
+            $str_pxelinux="pxelinux-stats.cfg";
+        }else{
+            $str_pxelinux="pxelinux.cfg";
+        }
    
-   
-   $str_pxelinux="";
-   if (strtolower($json["netinstall_stats"])=="true"){
-        $str_pxelinux="pxelinux-stats.cfg";
-   }else{
-        $str_pxelinux="pxelinux.cfg";
-   }
+        if ($put_amd64){
+            $MenuEntry->menuString.="\n# Netinst: Install Menu
+            LABEL Instal.la LliureX en aquest ordinador amd64
+            MENU LABEL Instal.la LliureX en aquest ordinador amd64
+            KERNEL pxe-ltsp/netinstall/ubuntu-installer/amd64/boot-screens/vesamenu.c32
+            CONFIG pxe-ltsp/netinstall/ubuntu-installer/amd64/$str_pxelinux/default pxe-ltsp/netinstall/\n";
+        }
 
-if ($put_x86){
-   $MenuEntry->menuString.="\n# Netinst: Install Menu
-LABEL Instal.la LliureX en aquest ordinador x86
-MENU LABEL Instal.la LliureX en aquest ordinador x86
-KERNEL pxe-ltsp/netinstall/ubuntu-installer/i386/boot-screens/vesamenu.c32
-CONFIG pxe-ltsp/netinstall/ubuntu-installer/i386/$str_pxelinux/default pxe-ltsp/netinstall/\n";
-}
-
-if ($put_amd64){
-   $MenuEntry->menuString.="\n# Netinst: Install Menu
-LABEL Instal.la LliureX en aquest ordinador amd64
-MENU LABEL Instal.la LliureX en aquest ordinador amd64
-KERNEL pxe-ltsp/netinstall/ubuntu-installer/amd64/boot-screens/vesamenu.c32
-CONFIG pxe-ltsp/netinstall/ubuntu-installer/amd64/$str_pxelinux/default pxe-ltsp/netinstall/\n";
-}
-
-if ($put_x86 or $put_amd64){
-    array_push($MenuEntryList, $MenuEntry);
-    $MenuEntryListObject=$MenuEntryList;
-}
-   
-   
-   /*echo "# Netinst: Install Menu\n";
-   echo "LABEL Instal.la LliureX en aquest ordinador\n";
-   echo "MENU LABEL Instal.la LliureX en aquest ordinador\n";
-   echo "KERNEL pxe/netinstall/ubuntu-installer/i386/boot-screens/vesamenu.c32\n";
-   echo "CONFIG pxe/netinstall/ubuntu-installer/i386/pxelinux.cfg/default pxe/netinstall/\n";*/
+        if ($put_amd64){
+            array_push($MenuEntryList, $MenuEntry);
+            $MenuEntryListObject=$MenuEntryList;
+        }
+    }
 }
 
 ?>
