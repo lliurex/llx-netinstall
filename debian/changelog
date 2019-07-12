@@ -1,3 +1,9 @@
+llx-netinstall (1.0.7) bionic; urgency=medium
+
+  * Remove x86 support
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Fri, 12 Jul 2019 13:34:05 +0200
+
 llx-netinstall (1.0.6) bionic; urgency=medium
 
   * fix css typo error
