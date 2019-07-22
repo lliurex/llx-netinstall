@@ -4,8 +4,8 @@
   "name": "LliureX Netinstall",
   "description": "llx-netinstall-description",
   "main":"main.html",
-  "icon":"NetinstallIcon.png",
-  "banner":"NetinstallBanner.png",
+  "icon":"NetinstallIcon.svg",
+  "banner":"NetinstallBanner.svg",
   "components": [ ]
 }
 
