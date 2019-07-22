@@ -1,3 +1,9 @@
+llx-netinstall (1.0.8) bionic; urgency=medium
+
+  * Admin center images udpated
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Mon, 22 Jul 2019 12:06:01 +0200
+
 llx-netinstall (1.0.7) bionic; urgency=medium
 
   * Remove x86 support
