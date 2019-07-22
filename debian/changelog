@@ -1,3 +1,9 @@
+llx-netinstall (1.0.9) bionic; urgency=medium
+
+  * fix banner image
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Mon, 22 Jul 2019 14:44:31 +0200
+
 llx-netinstall (1.0.8) bionic; urgency=medium
 
   * Admin center images udpated
