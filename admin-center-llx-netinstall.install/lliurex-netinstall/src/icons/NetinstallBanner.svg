@@ -13,16 +13,16 @@
    id="Capa_1"
    x="0px"
    y="0px"
-   width="841.89px"
-   height="595.275px"
-   viewBox="0 0 841.89 595.275"
+   width="454.21701"
+   height="22.4"
+   viewBox="0 0 454.217 22.399999"
    enable-background="new 0 0 841.89 595.275"
    xml:space="preserve"
-   sodipodi:docname="NetInstallBanner.svg"
+   sodipodi:docname="NetinstallBanner.svg"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"><metadata
    id="metadata27"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
    id="defs25" /><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
@@ -37,14 +37,16 @@
    id="namedview23"
    showgrid="true"
    inkscape:zoom="0.7929108"
-   inkscape:cx="484.22452"
-   inkscape:cy="197.5817"
+   inkscape:cx="-44.938657"
+   inkscape:cy="-42.4183"
    inkscape:window-x="0"
    inkscape:window-y="36"
    inkscape:window-maximized="1"
    inkscape:current-layer="Capa_1"><inkscape:grid
      type="xygrid"
-     id="grid29" /></sodipodi:namedview>
+     id="grid29"
+     originx="-266.20799"
+     originy="-239.99999" /></sodipodi:namedview>
 
 
 
@@ -56,18 +58,19 @@
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#55a9a6;fill-opacity:1;stroke:none"
-   x="264"
-   y="355.27502"
+   x="-2.2079999"
+   y="22.4"
    id="text840"
    inkscape:export-xdpi="105.5"
    inkscape:export-ydpi="105.5"><tspan
      sodipodi:role="line"
      id="tspan838"
-     x="264"
-     y="355.27502"
+     x="-2.2079999"
+     y="22.4"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:SpaceColony-Medium;-inkscape-font-specification:SpaceColony-Medium;fill:#55a9a6;fill-opacity:1"><tspan
    style="fill:#666666"
    id="tspan830">NETWORK </tspan>INSTALL</tspan></text>
+
 
 
 
