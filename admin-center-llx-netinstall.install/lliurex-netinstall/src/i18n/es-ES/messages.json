@@ -14,7 +14,7 @@
      "lliurex_netinstall_username":["Usuario"],
      "lliurex_netinstall_pass":["Contraseña"],
      "lliurex_netinstall_rootpass":["Contraseña de administración"],
-     "lliurex_netinstall_name":["Instalación de equipos por de de LliureX"],
+     "lliurex_netinstall_name":["Instalación de equipos por red de LliureX"],
      "llx_netinstall_apply_config":["Aplica"],
      "llx_netinstall_error":["Se produjo el siguiente error en configurar la instalación por red: "],
      "llx_netinstall_no_user":["El nombre de usuario o passwords no pueden ser cadenas vacias "],
