@@ -114,18 +114,18 @@ class NetinstallManager:
 		else:
 			unattended='false';
 		
-		if("netinstall_stats" not in data.keys() or data["netinstall_stats"].lower()!="false"):
+		if("netinstall_stats" not in list(data.keys()) or data["netinstall_stats"].lower()!="false"):
 			do_stats='true';
 			data['netinstall_stats']='true';
 		else:
 			do_stats='false';
-		if("nongplapps" not in data.keys() or data["nongplapps"].lower()=="false"):
+		if("nongplapps" not in list(data.keys()) or data["nongplapps"].lower()=="false"):
 			nongplapps='false';
 			data['nongplapps']='false';
 		else:
 			nongplapps='true';
 		
-		if ("normal_install" not in data.keys() or data["normal_install"].lower() == "false"):
+		if ("normal_install" not in list(data.keys()) or data["normal_install"].lower() == "false"):
 		        normal_install='false';
 		        data['normal_install']='false';
 		else:
