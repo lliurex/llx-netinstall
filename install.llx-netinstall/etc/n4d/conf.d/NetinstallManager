@@ -1,16 +1,41 @@
-[SETUP]
-type=python
-path=NetinstallManager.py
-class=NetinstallManager
-[METHODS]
-test=*,anonymous
-backup=sudo,admins
-restore=sudo,admins
-load_exports=sudo,admins
-getNetinstall=*,anonymous
-setNetinstall=sudo,admins
-setNetinstallUnattended=sudo,admins
-get_force_classroom_stats=sudo,admins
-set_force_classroom_stats=sudo,admins
-install_nongpl=sudo,admins
-set_desktop_type=sudo,admins
+{
+	"SETUP":{
+		"type": "python",
+		"path": "NetinstallManager.py",
+		"class": "NetinstallManager"
+	},
+	"METHODS":
+	{
+        "test":{},
+        "backup":{
+            "allowed_groups": ["sudo","admin","admins"]
+        },
+        "restore":{
+            "allowed_groups": ["sudo","admin","admins"]
+        },
+		"load_exports":{
+			"allowed_groups": ["sudo","admin","admins"]
+		},
+		"getNetinstall":{
+			"allowed_groups": ["sudo","admin","admins"]
+		},
+        "setNetinstall":{
+			"allowed_groups": ["sudo","admin","admins"]
+		},
+        "setNetinstallUnattended":{
+			"allowed_groups": ["sudo","admin","admins"]
+		},
+        "get_force_classroom_stats":{
+			"allowed_groups": ["sudo","admin","admins"]
+		},
+        "set_force_classroom_stats":{
+			"allowed_groups": ["sudo","admin","admins"]
+		},
+        "install_nongpl":{
+			"allowed_groups": ["sudo","admin","admins"]
+		},
+        "set_desktop_type":{
+			"allowed_groups": ["sudo","admin","admins"]
+		}
+	}
+}
