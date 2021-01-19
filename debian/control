@@ -7,7 +7,7 @@ Standards-Version: 3.9.5
 
 Package: llx-netinstall
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, python3-jinja2, n4d-dnsmasq (>= 1.41), apache2 | httpd, lliurex-preseed-common (>=0.21), llx-bootmanager (>=0.4.0), netinstall-boot, netinstall-kernel, netinstall-seeds
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-jinja2, python3-n4d-client, n4d-dnsmasq (>= 1.41), apache2 | httpd, lliurex-preseed-common (>=0.21), llx-bootmanager (>=0.4.0), netinstall-boot, netinstall-kernel, netinstall-seeds
 Conflicts: lmd-server (<< 2.4.58)
 Replaces: lmd-server (<< 2.4.58)
 Description: lliurex network installation
