@@ -1,0 +1,93 @@
+{
+    "SETUP": {
+        "type": "python",
+        "path": "NetinstallManager.py",
+        "class": "NetinstallManager"
+    },
+    "METHODS": {
+        "apt": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "test": {
+            "allowed_groups": [
+                "*",
+                "anonymous"
+            ]
+        },
+        "backup": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "restore": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "load_exports": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "getNetinstall": {
+            "allowed_groups": [
+                "*",
+                "anonymous"
+            ]
+        },
+        "setNetinstall": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "set_force_classroom_stats": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "get_force_classroom_stats": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "def": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "install_nongpl": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "END": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "set_desktop_type": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "setNetinstallUnattended": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        }
+    }
+}
