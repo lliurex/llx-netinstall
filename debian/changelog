@@ -1,3 +1,9 @@
+llx-netinstall (1.1.6) focal; urgency=medium
+
+  * Sync code
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 12 Feb 2021 18:40:18 +0100
+
 llx-netinstall (1.1.5) focal; urgency=medium
 
   * Fix config
