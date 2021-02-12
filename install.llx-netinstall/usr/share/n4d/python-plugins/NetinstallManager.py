@@ -71,7 +71,7 @@ class NetinstallManager:
             return n4d.responses.build_failed_call_response(-1,'Variable HOSTNAME not defined')
             
         #Encode vars to UTF-8
-        string_template = template_cname.render(list_variables).encode('UTF-8')
+        string_template = template_cname.render(list_variables)
         #Open template file
         fd, tmpfilepath = tempfile.mkstemp()
         new_export_file = open(tmpfilepath,'w')
