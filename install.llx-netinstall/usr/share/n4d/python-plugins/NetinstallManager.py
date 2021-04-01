@@ -12,6 +12,7 @@ import subprocess
 import string
 import random
 import crypt
+import json
 from n4d.server.core import Core
 import n4d.responses
 from n4d.utils import n4d_mv
@@ -25,7 +26,13 @@ class NetinstallManager:
             return build_authentication_failed_response()
         #Load template file
         self.tpl_env = Environment(loader=FileSystemLoader('/usr/share/n4d/templates/netinstall'))
-        self.imagepath="/etc/ltsp/bootopts/"
+        #self.imagepath="/etc/ltsp/bootopts/"
+        self.imagepath="/etc/llxnetinstall"
+        self.netfile = os.path.realpath(os.path.join(self.imagepath,"netinstall.json"))
+        self.netfile_keys = ['netinstall_boot','netinstall_unattended','netinstall_stats','nongplapps','normal_install']
+        self.mirror_var = "/var/lib/n4d/variables-dir/LLIUREXMIRROR"
+        self.mirror_var = self.get_mirror_var()
+        self.distro = 'llx21'
         pass
     #def init
     
@@ -51,7 +58,15 @@ class NetinstallManager:
     def restore(self):
         pass
     #def test
-        
+
+    def get_mirror_var(self):
+        self.mirror_var = self.n4d.get_variable('LLIUREXMIRROR')
+        if self.mirror_var.get('status') == 0:
+            self.mirror_var = self.mirror_var.get('return')
+        else:
+            self.mirror_var = None
+        return self.mirror_var
+
     def load_exports(self,restart_dnsmasq=False):
         #Get template
         template_cname = self.tpl_env.get_template("cname")
@@ -66,9 +81,9 @@ class NetinstallManager:
         except Exception as e:
             return n4d.responses.build_authentication_failed_response()
         if not list_variables.get('INTERNAL_DOMAIN',None):
-            return n4d.responses.build_failed_call_response(-1,'Variable INTERNAL_DOMAIN not defined')
+            return n4d.responses.build_failed_call_response(ret_msg='Variable INTERNAL_DOMAIN not defined')
         if not list_variables.get('HOSTNAME',None):
-            return n4d.responses.build_failed_call_response(-1,'Variable HOSTNAME not defined')
+            return n4d.responses.build_failed_call_response(ret_msg='Variable HOSTNAME not defined')
             
         #Encode vars to UTF-8
         string_template = template_cname.render(list_variables)
@@ -82,7 +97,7 @@ class NetinstallManager:
         n4d_mv(tmpfilepath,'/var/lib/dnsmasq/config/cname-preseed',True,'root','root','0644',True )
         if restart_dnsmasq:
             subprocess.Popen(['systemctl','restart','dnsmasq'],stdout=subprocess.PIPE).communicate()
-        return n4d.responses.build_successful_call_response(ret_msg='Exports written')
+        return n4d.responses.build_successful_call_response('Exports written')
     #def load_exports
     
     def getNetinstall(self):
@@ -96,41 +111,64 @@ class NetinstallManager:
         # if 1 but not exist 2 or/and 3 -> show with error
         #
         
-        json_data=open(self.imagepath+"netinstall.json")
-        data = json.load(json_data)
-        json_data.close()
+        data = None
+        with open(self.netfile,"r") as fp:
+            data = json.load(fp)
+
+        if not isinstance(data,dict):
+            n4d.responses.build_failed_call_response(ret_msg='Malformed file {}'.format(netfile))
+        dkeys=data.keys()
+        # check for ALL fields (now some are mandatory)
+        obj = {}
+        for key in self.netfile_keys:
+            if key not in dkeys:
+                return n4d.responses.build_failed_call_response(ret_msg='Malformed file {}, key {} not found'.format(netfile,key))
+            value = str(data[key]).lower()
+            if value == "true":
+                obj[key] = "true"
+            else:
+                obj[key] = "false"
+
+        # if(data["netinstall_boot"].lower()=="true"):
+        #     netinstall='true';
+        # else:
+        #     netinstall='false';
         
-        if(data["netinstall_boot"].lower()=="true"):
-            netinstall='true';
-        else:
-            netinstall='false';
-        if(data["netinstall_unattended"].lower()=="true"):
-            unattended='true';
-        else:
-            unattended='false';
+        # if(data["netinstall_unattended"].lower()=="true"):
+        #     unattended='true';
+        # else:
+        #     unattended='false';
         
-        if("netinstall_stats" not in list(data.keys()) or data["netinstall_stats"].lower()!="false"):
-            do_stats='true';
-            data['netinstall_stats']='true';
-        else:
-            do_stats='false';
-        if("nongplapps" not in list(data.keys()) or data["nongplapps"].lower()=="false"):
-            nongplapps='false';
-            data['nongplapps']='false';
-        else:
-            nongplapps='true';
+        # #if("netinstall_stats" not in list(data.keys()) or data["netinstall_stats"].lower()!="false"):
+        # #make stats mandatory field
+        # if(data["netinstall_stats"].lower()!="false"):
+        #     do_stats='true';
+        #     data['netinstall_stats']='true';
+        # else:
+        #     do_stats='false';
+
+        # #if("nongplapps" not in list(data.keys()) or data["nongplapps"].lower()=="false"):
+        # #make nongplapps mandatory field
+        # if(data["nongplapps"].lower()=="false"):
+        #     nongplapps='false';
+        #     data['nongplapps']='false';
+        # else:
+        #     nongplapps='true';
         
-        if ("normal_install" not in list(data.keys()) or data["normal_install"].lower() == "false"):
-                normal_install='false';
-                data['normal_install']='false';
-        else:
-                normal_install='true';
+        # #if ("normal_install" not in list(data.keys()) or data["normal_install"].lower() == "false"):
+        # #make normal_install mandatory
+        # if (data["normal_install"].lower() == "false"):
+        #         normal_install='false';
+        #         data['normal_install']='false';
+        # else:
+        #         normal_install='true';
+        
         #write the json file
-        ret=self.setNetinstall(data["netinstall_boot"].lower(),data["netinstall_unattended"].lower(),data["netinstall_stats"].lower(),data["nongplapps"].lower(),data["normal_install"].lower())
-        if ret['status'].lower() != 'true':
-            raise n4d.responses.build_failed_call_response(-1,ret_msg='Error setting json file calling setNetinstall')
-        
-        return n4d.responses.build_successful_call_response(ret_msg="{}".format({"netinstall":netinstall, "unattended":unattended, "stats": do_stats, 'nongplapps':nongplapps, 'normal_install':normal_install}))     
+        params = tuple((obj.get(k) for k in self.netfile_keys))
+        ret=self.setNetinstall(*params)
+        if ret.get('status') != 0:
+            return n4d.responses.build_failed_call_response(ret_msg='Error setting json file calling setNetinstall, '.format(ret.get('msg')))
+        return n4d.responses.build_successful_call_response(json.dumps(obj))
     # END def GetNetInstall
 
     def setNetinstall(self, status, unattended, stats, nongplapps, type_install):
@@ -139,36 +177,50 @@ class NetinstallManager:
         sets option for netinstall int bootopt.json (status and unattended install)
         '''
         try:
-            mirror_var="/var/lib/n4d/variables-dir/LLIUREXMIRROR"
-            if os.path.isfile(mirror_var):
-                if (status.lower()=="true" or status.lower()=="false"):
-                    path_to_write = os.path.join(self.imagepath,"netinstall.json")
-                    f = open(path_to_write,'w')
-                    data='{"netinstall_boot":"'+str(status)+'", "netinstall_unattended":"'+str(unattended)+'", "netinstall_stats":"'+str(stats)+'","nongplapps":"'+str(nongplapps)+'"'+',"normal_install":"'+type_install+'"}'
-                    f.writelines(data)
-                    f.close()
-                    
-                    # Enable or disable NETINSTALL on menu (the last option, but enabled)
-                    if (status.lower()=="true"):
-                        self.n4d.get_plugin("LlxBootManager").pushToBootList("netinstall")
-                    else:
-                        self.n4d.get_plugin("LlxBootManager").removeFromBootList("netinstall")
-
-                    # Removing user and password from preseed
-                    self.setNetinstallUnattended(status, "", "", "")
-                    
-                    return n4d.responses.build_successful_call_response()
-    
-                else:
-                    return n4d.responses.build_invalid_arguments_response(-1)
-                    # return {"status":"false", "msg":"option not valid"}
-            else:
-                    return n4d.responses.build_failed_call_response(-1,ret_msg='mirror is not available')
-                    # return {"status":"false", "msg":"mirror is not available"}
+            if not self.mirror_var or not isinstance(self.mirror_var,dict):
+                return n4d.responses.build_failed_call_response(ret_msg='LLIUREXMIRROR variable not defined')
+            if self.distro not in self.mirror_var:
+                return n4d.responses.build_failed_call_response(ret_msg='Mirror is not available')
+            mirror_values = self.mirror_var.get(self.distro)
+            if not mirror_values:
+                return n4d.responses.build_failed_call_response(ret_msg='Mirror for {} not available'.format(self.distro))
+            mirror_progress = str(mirror_values.get('progress'))
+            mirror_status = mirror_values.get('status_mirror')
+            if not mirror_progress or not mirror_status:
+                return n4d.responses.build_failed_call_response(ret_msg='Mirror values without progress or status')
+            mirror_progress = str(mirror_progress)
+            if mirror_progress != "100" or str(mirror_status).lower() != 'ok':
+                return n4d.responses.build_failed_call_response(ret_msg='Incomplete mirror')
+            
+            if (status.lower()=="true" or status.lower()=="false"):
+                with open(self.netfile,'w') as fp:
+                    data = {
+                        'netinstall_boot': str(status),
+                        'netinstall_unattended': str(unattended),
+                        'netinstall_stats': str(stats),
+                        'nongplapps': str(nongplapps),
+                        'normal_install': type_install
+                    }
+                    data = json.dumps(data)
+                    #data='{"netinstall_boot":"'+str(status)+'", "netinstall_unattended":"'+str(unattended)+'", "netinstall_stats":"'+str(stats)+'","nongplapps":"'+str(nongplapps)+'"'+',"normal_install":"'+type_install+'"}'
+                    fp.writelines(data)
                 
+                return n4d.responses.build_successful_call_response(data)    
+                
+                # Enable or disable NETINSTALL on menu (the last option, but enabled)
+                if (status.lower()=="true"):
+                    self.n4d.get_plugin("LlxBootManager").pushToBootList("netinstall")
+                else:
+                    self.n4d.get_plugin("LlxBootManager").removeFromBootList("netinstall")
+
+                # Removing user and password from preseed
+                self.setNetinstallUnattended(status, "", "", "")
+            else:
+                return n4d.responses.build_failed_call_response(ret_msg='File {} has wrong key netinstall_boot'.format(self.imagepath+"netinstall.json"))
+                # return {"status":"false", "msg":"option not valid"}
             #return data;
         except Exception as e:
-            return {"status":"false", "msg":str(e)};
+            return n4d.responses.build_failed_call_response(ret_msg=str(e))
 
         # END def getListTemplate(self, image)
     
@@ -176,33 +228,41 @@ class NetinstallManager:
         var_name='STATS_ENABLED'
         stats_value = self.n4d.get_variable(var_name)
         
-        ret = False
-        if  stats_value == None:
+        if not isinstance(stats_value,dict) or stats_value.get('status') != 0:
+            # if no parameter get current value
+            if stats == None:
+                return stats_value.get('return')
             # Register new variable
             ret = self.n4d.set_variable(var_name,'0',{'description':'Stats enabled for lliurex-statistics'})
+            if ret.get('status') != 0:
+                return n4d.responses.build_failed_call_response(ret_msg='Unable to set variable {}'.format(var_name))
             if stats.lower() == 'true' or stats == '1':
             # Enable 
                 ret = self.n4d.set_variable(var_name,'1')
             else:
                 # Disable
                 ret = self.n4d.set_variable(var_name,'0')
-        if ret != True:
-            return n4d.responses.build_failed_call_response(-1,ret_msg='Error setting variable')
+        
+        if ret.get('status') != 0:
+            return n4d.responses.build_failed_call_response(ret_msg='Error setting variable')
         else:
-            return n4d.responses.build_successful_call_response()
+            return n4d.responses.build_successful_call_response(stats)
     #END def set_force_classroom_stats(self,status)
     
     def get_force_classroom_stats(self):
         var_name='STATS_ENABLED'
         stats_value = self.n4d.get_variable(var_name)
-        
-        if  stats_value == None:
+        if not isinstance(stats_value,dict) or stats_value.get('status') != 0:
             # Register new variable
             ret = self.n4d.set_variable(var_name,'0',{'description':'Stats enabled for lliurex-statistics'})
+            if ret.get('status') != 0:
+                return n4d.responses.build_failed_call_response(ret_msg='Unable to set variable {}'.format(var_name))
             stats_value = self.n4d.get_variable(var_name)
+            if stats_value.get('status') != 0:
+                return n4d.responses.build_failed_call_response(ret_msg='Unable to get variable {}'.format(var_name))
             # return n4d.responses.build_successful_call_response(ret_msg=stats_value)
             # return str(stats_value)
-        return n4d.responses.build_successful_call_response(ret_msg=stats_value)
+        return n4d.responses.build_successful_call_response(stats_value.get('return'))
         #else:
         #    return n4d.responses.build_successful_call_response(ret_msg=stats_value)
             # return str(stats_value)
@@ -231,7 +291,7 @@ class NetinstallManager:
             return n4d.responses.build_successful_call_response()
             # return {'status':"True",'msg': 'Ok'}
         except Exception as e:
-            return n4d.responses.build_failed_call_response(-1,ret_msg=str(e))
+            return n4d.responses.build_failed_call_response(ret_msg=str(e))
             # return {'status':"False",'msg': str(e)}         
     # END def install_nongpl(self, do):
     
@@ -256,7 +316,7 @@ class NetinstallManager:
             return n4d.responses.build_successful_call_response()
             # return {'status':"True",'msg': 'Ok'}
         except Exception as e:
-            return n4d.responses.build_failed_call_response(-1,ret_msg=str(e))
+            return n4d.responses.build_failed_call_response(ret_msg=str(e))
             # return {'status':"False",'msg': str(e)}         
     # END def set_desktop_type(self, thin):
     
@@ -265,7 +325,7 @@ class NetinstallManager:
         Writing in presseed username and password
         '''				
         if status == True and (not username or not password or not rootpassword):
-            return n4d.responses.build_failed_call_response(-1,ret_msg="Usernames or Passwords can't be an empty string")
+            return n4d.responses.build_failed_call_response(ret_msg="Usernames or Passwords can't be an empty string")
             # return {"status":"false", "msg": "Usernames or Passwords can't be an empty string"}
         try:
             filedir="/var/www/preseed"
@@ -327,7 +387,7 @@ class NetinstallManager:
             # return {"status":"true", "msg":"all ok"}
             
         except Exception as e:
-            return n4d.responses.build_failed_call_response(-1,ret_msg=str(e))
+            return n4d.responses.build_failed_call_response(ret_msg=str(e))
             # return {"status":"false", "msg":str(e)}
     # END def getListTemplate(self, image)
     

@@ -1,0 +1,7 @@
+{
+    "netinstall_boot":"true",
+    "netinstall_unattended": "true",
+    "netinstall_stats": "true",
+    "nongplapps": "false",
+    "normal_install": "true"
+}

@@ -402,7 +402,7 @@ LlxNetinstall.prototype.checkMirrorAvailable=function checkMirrorAvailable(){
    var arglist="";
       
    Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
-     if(response.status){
+     if(response.toLowerCase() == "mirror available"){
         self.getNetinstallConfig();
      } else {
         self.showMirrorUnavailable();
