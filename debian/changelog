@@ -1,3 +1,9 @@
+llx-netinstall (1.1.8) focal; urgency=medium
+
+  * Fix netinstall bootmenu
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 06 Apr 2021 14:04:20 +0200
+
 llx-netinstall (1.1.7) focal; urgency=medium
 
   * More fixes
