@@ -168,7 +168,7 @@ class NetinstallManager:
         ret=self.setNetinstall(*params)
         if ret.get('status') != 0:
             return n4d.responses.build_failed_call_response(ret_msg='Error setting json file calling setNetinstall, '.format(ret.get('msg')))
-        return n4d.responses.build_successful_call_response(json.dumps(obj))
+        return n4d.responses.build_successful_call_response(obj)
     # END def GetNetInstall
 
     def setNetinstall(self, status, unattended, stats, nongplapps, type_install):
@@ -192,23 +192,23 @@ class NetinstallManager:
             if mirror_progress != "100" or str(mirror_status).lower() != 'ok':
                 return n4d.responses.build_failed_call_response(ret_msg='Incomplete mirror')
             
-            if (status.lower()=="true" or status.lower()=="false"):
+            if (str(status).lower()=="true" or str(status).lower()=="false"):
                 with open(self.netfile,'w') as fp:
                     data = {
-                        'netinstall_boot': str(status),
-                        'netinstall_unattended': str(unattended),
-                        'netinstall_stats': str(stats),
-                        'nongplapps': str(nongplapps),
-                        'normal_install': type_install
+                        'netinstall_boot': str(status).lower(),
+                        'netinstall_unattended': str(unattended).lower(),
+                        'netinstall_stats': str(stats).lower(),
+                        'nongplapps': str(nongplapps).lower(),
+                        'normal_install': str(type_install).lower()
                     }
-                    data = json.dumps(data)
+                    json_data = json.dumps(data)
                     #data='{"netinstall_boot":"'+str(status)+'", "netinstall_unattended":"'+str(unattended)+'", "netinstall_stats":"'+str(stats)+'","nongplapps":"'+str(nongplapps)+'"'+',"normal_install":"'+type_install+'"}'
-                    fp.writelines(data)
+                    fp.writelines(json_data)
                 
                 return n4d.responses.build_successful_call_response(data)    
                 
                 # Enable or disable NETINSTALL on menu (the last option, but enabled)
-                if (status.lower()=="true"):
+                if (str(status).lower()=="true"):
                     self.n4d.get_plugin("LlxBootManager").pushToBootList("netinstall")
                 else:
                     self.n4d.get_plugin("LlxBootManager").removeFromBootList("netinstall")
@@ -236,7 +236,7 @@ class NetinstallManager:
             ret = self.n4d.set_variable(var_name,'0',{'description':'Stats enabled for lliurex-statistics'})
             if ret.get('status') != 0:
                 return n4d.responses.build_failed_call_response(ret_msg='Unable to set variable {}'.format(var_name))
-            if stats.lower() == 'true' or stats == '1':
+            if str(stats).lower() == 'true' or str(stats) == '1':
             # Enable 
                 ret = self.n4d.set_variable(var_name,'1')
             else:
@@ -324,7 +324,7 @@ class NetinstallManager:
         '''
         Writing in presseed username and password
         '''				
-        if status == True and (not username or not password or not rootpassword):
+        if (status == True or str(status).lower() == "true" or str(status) == '1' or status == 1 ) and (not username or not password or not rootpassword):
             return n4d.responses.build_failed_call_response(ret_msg="Usernames or Passwords can't be an empty string")
             # return {"status":"false", "msg": "Usernames or Passwords can't be an empty string"}
         try:
@@ -342,7 +342,7 @@ class NetinstallManager:
             salt=''.join([random.choice(string.ascii_letters + string.digits) for _ in range(16)])
             rootpassencrypted=crypt.crypt(str(rootpassword),"$6$"+salt+"$")
             
-            if(status==True):
+            if (status == True or str(status).lower() == "true" or str(status) == '1' or status == 1 ):
                 # Saving file
                 
                 userfullline="d-i passwd/user-fullname string "+str(username)+"\n";

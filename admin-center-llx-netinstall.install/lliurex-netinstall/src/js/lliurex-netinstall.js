@@ -22,10 +22,13 @@ LlxNetinstall.prototype.getNetinstallConfig=function getNetinstallConfig(){
    arglist=[];
     
    Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
-      console.log('getNetinstall '+response);
-      response.netinstall == 'true' ? self.netinstall=true : self.netinstall=false;
-      response.unattended == 'true' ? self.unattended_netinstall=true : self.unattended_netinstall=false;
-      response.stats == 'true' ? self.netinstall_stats=true : self.netinstall_stats=false;
+      console.log('getNetinstall '+JSON.stringify(response))
+      if (typeof(response) == "string"){
+         response = JSON.parse(response)
+      }
+      response.netinstall_boot == 'true' ? self.netinstall=true : self.netinstall=false;
+      response.netinstall_unattended == 'true' ? self.unattended_netinstall=true : self.unattended_netinstall=false;
+      response.netinstall_stats == 'true' ? self.netinstall_stats=true : self.netinstall_stats=false;
       response.nongplapps == 'true' ? self.nongplapps=true : self.nongplapps=false;
       if (response.normal_install == 'true'){
             self.normal_install=true;
@@ -50,7 +53,10 @@ LlxNetinstall.prototype.set_nongplapps=function set_nongplapps(status){
         arglist=['false'];
    }
    Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
-      console.log('SetNonGPL '+response);
+      if (typeof(response) == "string"){
+         response = JSON.parse(response)
+      }
+      console.log('SetNonGPL '+JSON.stringify(response))
    },0);
 }
 
@@ -66,7 +72,10 @@ LlxNetinstall.prototype.set_desktop_type=function set_desktop_type(status){
         arglist=['false'];
    }
    Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
-      console.log('SetDesktoptypeLight='+status+' '+response);
+      if (typeof(response) == "string"){
+         response = JSON.parse(response)
+      }
+      console.log('SetDesktoptypeLight='+status+' '+JSON.stringify(response))
    },0);
 }
 
@@ -340,50 +349,43 @@ LlxNetinstall.prototype.showUI=function showUI(){
       var n4dmethod="setNetinstall";
 
       var arglist=[self.netinstall.toString(), self.unattended_netinstall.toString(), self.netinstall_stats.toString(), self.nongplapps.toString(), self.normal_install.toString()];
-      console.log('Setting netinstall '+arglist);
+      console.log('Setting netinstall '+JSON.stringify(arglist))
       var test=arglist;
       self.set_nongplapps(self.nongplapps);
       self.set_desktop_type(self.light_install);
       
       Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
-         
-         // caldria comprovar si retorna ok...
+         if (typeof(response) == "string"){
+            response = JSON.parse(response)
+         }  
          try{
-         if (response!==null && (response.status)=="true"){
-         
-            var credentials=[sessionStorage.username, sessionStorage.password];
-            var n4dclass="NetinstallManager";
-            var n4dmethod="setNetinstallUnattended";
-            var arglist=[self.unattended_netinstall, username, password,rootpassword];
-               
-               
+            if (response!==null){
+               var credentials=[sessionStorage.username, sessionStorage.password];
+               var n4dclass="NetinstallManager";
+               var n4dmethod="setNetinstallUnattended";
+               var arglist=[self.unattended_netinstall, username, password,rootpassword];
                Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
-                  if (response!==null && (response.status)=="true"){
+                  if (typeof(response) == "string"){
+                     response = JSON.parse(response)
+                  }
+                  if (response!==null) {
                      msg=self._("llx_netinstall_success");
-                     Utils.msg(msg, MSG_SUCCESS);}
-                  else {
+                     Utils.msg(msg, MSG_SUCCESS);
+                  } else {
                      msg=self._("llx_netinstall_error")+response.msg;
                      Utils.msg(msg, MSG_ERROR);
                   }
                });
-         } else {
-            msg=self._("llx_netinstall_error")+response.msg;
+            } else {
+               msg=self._("llx_netinstall_error")+response.msg;
+               Utils.msg(msg, MSG_ERROR);
+            }
+         }catch(exception){
+            msg=self._("llx_netinstall_error")+exception;
             Utils.msg(msg, MSG_ERROR);
          }
-         
-         
-         
-      
-      }catch(exception){
-           msg=self._("llx_netinstall_error")+exception;
-           Utils.msg(msg, MSG_ERROR);
-         }
-         
-         
       });
-      
-      });
-   
+   });
 };
 
 LlxNetinstall.prototype.showMirrorUnavailable=function showMirrorUnavailable(){
