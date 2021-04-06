@@ -7,6 +7,8 @@ if (is_file($mirror_var) ) $mirror_installed=True; else $mirror_installed=False;
 $filename="/etc/ltsp/bootopts/netinstall.json";
 $type_install='';
 
+$json=array();
+
 if (is_file($filename)){
     $content_json=file_get_contents($filename);
     $json=json_decode($content_json,true);
@@ -20,7 +22,7 @@ if (is_file($filename)){
 }
 
 
-if (strtolower($json["netinstall_boot"])=="true"&&$mirror_installed==True){
+if (is_array($json) && array_key_exists("netinstall_boot",$json) && strtolower($json["netinstall_boot"])=="true"&&$mirror_installed==True){
    $MenuEntryList=array();
    $MenuEntry=new stdClass();
    $MenuEntry->id="netinstall";
