@@ -1,3 +1,9 @@
+llx-netinstall (1.1.9) focal; urgency=medium
+
+  * Fix postinst enabling n4d module
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 20 Apr 2021 11:18:29 +0200
+
 llx-netinstall (1.1.8) focal; urgency=medium
 
   * Fix netinstall bootmenu

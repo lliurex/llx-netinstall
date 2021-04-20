@@ -17,6 +17,7 @@ case $1 in
 		if [ ! -L /var/www/ipxeboot/pxe-ltsp ]; then
 			ln -s /var/lib/tftpboot/ltsp /var/www/ipxeboot/pxe-ltsp
 		fi
+		n4d-modules enable-plugin /etc/n4d/conf.d/NetinstallManager.json || true
         ;;
 	abort-upgrade|abort-remove|abort-deconfigure)
 	;;
