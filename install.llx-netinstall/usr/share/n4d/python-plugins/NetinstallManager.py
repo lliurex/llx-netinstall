@@ -171,7 +171,7 @@ class NetinstallManager:
         return n4d.responses.build_successful_call_response(obj)
     # END def GetNetInstall
 
-    def setNetinstall(self, status, unattended, stats, nongplapps, type_install):
+    def setNetinstall(self, status, unattended, stats, type_install):
         '''
         receives data from admin-center form
         sets option for netinstall int bootopt.json (status and unattended install)
@@ -198,7 +198,6 @@ class NetinstallManager:
                         'netinstall_boot': str(status).lower(),
                         'netinstall_unattended': str(unattended).lower(),
                         'netinstall_stats': str(stats).lower(),
-                        'nongplapps': str(nongplapps).lower(),
                         'normal_install': str(type_install).lower()
                     }
                     json_data = json.dumps(data)
@@ -268,32 +267,32 @@ class NetinstallManager:
             # return str(stats_value)
     #END def get_force_classroom_stats(self):
     
-    def install_nongpl(self, do):
-        '''
-        TODO: REMOVE THIS FUNCTION , NONGPL FUNCTIONS (FLASH)
-        '''
-        if isinstance(do,bool):
-            do=str(do).lower()
-        elif isinstance(do,str):
-            do=do.lower()
-        else:
-            do="false"
+    # def install_nongpl(self, do):
+    #     '''
+    #     TODO: REMOVE THIS FUNCTION , NONGPL FUNCTIONS (FLASH)
+    #     '''
+    #     if isinstance(do,bool):
+    #         do=str(do).lower()
+    #     elif isinstance(do,str):
+    #         do=do.lower()
+    #     else:
+    #         do="false"
 
-        filedir="/var/www/preseed"
-        filename="extra-packages.netinstall"
-        file=filedir+'/'+filename
-        line="repository: http://archive.canonical.com/ubuntu xenial partner\n"
-        line+="package: adobe-flashplugin\n"
-        try:
-            with open(file,'w') as fp:
-                if do == 'true':
-                    fp.write(line)
-            return n4d.responses.build_successful_call_response()
-            # return {'status':"True",'msg': 'Ok'}
-        except Exception as e:
-            return n4d.responses.build_failed_call_response(ret_msg=str(e))
-            # return {'status':"False",'msg': str(e)}         
-    # END def install_nongpl(self, do):
+    #     filedir="/var/www/preseed"
+    #     filename="extra-packages.netinstall"
+    #     file=filedir+'/'+filename
+    #     line="repository: http://archive.canonical.com/ubuntu xenial partner\n"
+    #     line+="package: adobe-flashplugin\n"
+    #     try:
+    #         with open(file,'w') as fp:
+    #             if do == 'true':
+    #                 fp.write(line)
+    #         return n4d.responses.build_successful_call_response()
+    #         # return {'status':"True",'msg': 'Ok'}
+    #     except Exception as e:
+    #         return n4d.responses.build_failed_call_response(ret_msg=str(e))
+    #         # return {'status':"False",'msg': str(e)}         
+    # # END def install_nongpl(self, do):
     
     def set_desktop_type(self, thin=False):
         if isinstance(thin,bool):

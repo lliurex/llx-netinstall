@@ -2,7 +2,7 @@ function LlxNetinstall(){
    this.netinstall=false;
    this.unattended_netinstall=false;
    this.netinstall_stats=true;
-   this.nongplapps=false;
+   // this.nongplapps=false;
    this.normal_install=true;
    this.light_install=false;
 }
@@ -29,7 +29,7 @@ LlxNetinstall.prototype.getNetinstallConfig=function getNetinstallConfig(){
       response.netinstall_boot == 'true' ? self.netinstall=true : self.netinstall=false;
       response.netinstall_unattended == 'true' ? self.unattended_netinstall=true : self.unattended_netinstall=false;
       response.netinstall_stats == 'true' ? self.netinstall_stats=true : self.netinstall_stats=false;
-      response.nongplapps == 'true' ? self.nongplapps=true : self.nongplapps=false;
+      // response.nongplapps == 'true' ? self.nongplapps=true : self.nongplapps=false;
       if (response.normal_install == 'true'){
             self.normal_install=true;
             self.light_install=false;
@@ -41,24 +41,24 @@ LlxNetinstall.prototype.getNetinstallConfig=function getNetinstallConfig(){
    },0);
 }
 
-LlxNetinstall.prototype.set_nongplapps=function set_nongplapps(status){
-   var self=this;
+// LlxNetinstall.prototype.set_nongplapps=function set_nongplapps(status){
+//    var self=this;
  
-   credentials=[sessionStorage.username, sessionStorage.password];
-   n4dclass="NetinstallManager";
-   n4dmethod="install_nongpl";
-   if (status == true){
-        arglist=['true'];
-   }else{
-        arglist=['false'];
-   }
-   Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
-      if (typeof(response) == "string"){
-         response = JSON.parse(response)
-      }
-      console.log('SetNonGPL '+JSON.stringify(response))
-   },0);
-}
+//    credentials=[sessionStorage.username, sessionStorage.password];
+//    n4dclass="NetinstallManager";
+//    n4dmethod="install_nongpl";
+//    if (status == true){
+//         arglist=['true'];
+//    }else{
+//         arglist=['false'];
+//    }
+//    Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){
+//       if (typeof(response) == "string"){
+//          response = JSON.parse(response)
+//       }
+//       console.log('SetNonGPL '+JSON.stringify(response))
+//    },0);
+// }
 
 LlxNetinstall.prototype.set_desktop_type=function set_desktop_type(status){
    var self=this;
@@ -79,41 +79,41 @@ LlxNetinstall.prototype.set_desktop_type=function set_desktop_type(status){
    },0);
 }
 
-LlxNetinstall.prototype.mostrarAgreement = function(){
-    var html =" <div class='form-group' id = 'lliurex_netinstall_agreement_box'>";
-    if (!this.visibleLocals){
-        html+=this._("lliurex_netinstall_nongpl_description");
-    }
-    html +="</div>";
-    var dialog=bootbox.dialog({
-        title: this._("lliurex_netinstall_agreement_title"),
-        message:html,
-        buttons:[
-        {
-            label:'ok',
-            className: 'btn-info',
-            callback: function(diag){
-                //debugger;
-                self.netInstall.nongplapps=true;
-                $("#llx_netinstall_enable_nongpl_apps").prop('checked',true);
-            }
-        },
-        {
-            label:'cancel',
-            className: 'btn-danger',
-            callback: function(diag){
-                //debugger;
-                self.netInstall.nongplapps=false;
-                $("#llx_netinstall_enable_nongpl_apps").prop('checked',false);
-            }
-        }
-        ],
-        onshown: function(){ 
-            $.material.init('#lliurex_netinstall_agreement_box');
-        },
-    });
-    dialog.modal("show");
-}
+// LlxNetinstall.prototype.mostrarAgreement = function(){
+//     var html =" <div class='form-group' id = 'lliurex_netinstall_agreement_box'>";
+//     if (!this.visibleLocals){
+//         html+=this._("lliurex_netinstall_nongpl_description");
+//     }
+//     html +="</div>";
+//     var dialog=bootbox.dialog({
+//         title: this._("lliurex_netinstall_agreement_title"),
+//         message:html,
+//         buttons:[
+//         {
+//             label:'ok',
+//             className: 'btn-info',
+//             callback: function(diag){
+//                 //debugger;
+//                 self.netInstall.nongplapps=true;
+//                 $("#llx_netinstall_enable_nongpl_apps").prop('checked',true);
+//             }
+//         },
+//         {
+//             label:'cancel',
+//             className: 'btn-danger',
+//             callback: function(diag){
+//                 //debugger;
+//                 self.netInstall.nongplapps=false;
+//                 $("#llx_netinstall_enable_nongpl_apps").prop('checked',false);
+//             }
+//         }
+//         ],
+//         onshown: function(){ 
+//             $.material.init('#lliurex_netinstall_agreement_box');
+//         },
+//     });
+//     dialog.modal("show");
+// }
 
 
 LlxNetinstall.prototype.showUI=function showUI(){
@@ -124,13 +124,13 @@ LlxNetinstall.prototype.showUI=function showUI(){
    var netinstallunattended="";
    var netinstallunattendeddisabled="";
    var netinstall_stats="";
-   var netinstall_enable_nongpl="";
+   // var netinstall_enable_nongpl="";
    var netinstall_normal_install="";
    var netinstall_light_install="";
 
-   if (self.nongplapps === true){
-        netinstall_enable_nongpl="checked";
-   }
+   // if (self.nongplapps === true){
+   //      netinstall_enable_nongpl="checked";
+   // }
    //self.set_nongplapps(self.nongplapps);
    if (self.netinstall_stats===true){
       netinstall_stats="checked";
@@ -168,11 +168,11 @@ LlxNetinstall.prototype.showUI=function showUI(){
                                                 "disabled": netinstallunattendeddisabled,
                                                 "help":self._("lliurex_netinstall_enable_unattended")});
 
-    content+=Utils.formFactory.createCheckbox({"id":"llx_netinstall_enable_nongpl_apps",
-                                                "label":self._("lliurex_netinstall_enable_nongpl_apps"),
-                                                "default": netinstall_enable_nongpl,
-                                                "disabled": "",
-                                                "help":self._("lliurex_netinstall_enable_nongpl_apps")});
+   //  content+=Utils.formFactory.createCheckbox({"id":"llx_netinstall_enable_nongpl_apps",
+   //                                              "label":self._("lliurex_netinstall_enable_nongpl_apps"),
+   //                                              "default": netinstall_enable_nongpl,
+   //                                              "disabled": "",
+   //                                              "help":self._("lliurex_netinstall_enable_nongpl_apps")});
  
       content+=Utils.formFactory.createText({"id":"llx_netinstall_setnetinstall_user",
                                         "label": self._("lliurex_netinstall_username"),
@@ -268,17 +268,17 @@ LlxNetinstall.prototype.showUI=function showUI(){
         }
     );
  
-   $("#llx_netinstall_enable_nongpl_apps").on("click", function(){
-            if ($('#llx_netinstall_enable_nongpl_apps').prop('checked') == true){
-                //show message
-                self.mostrarAgreement();
-            }else{
-                self.nongplapps=false;
-            }
-        //console.log('setting nongplapps '+self.nongplapps)
-        //self.set_nongplapps(self.nongplapps);
-        }
-    );
+   // $("#llx_netinstall_enable_nongpl_apps").on("click", function(){
+   //          if ($('#llx_netinstall_enable_nongpl_apps').prop('checked') == true){
+   //              //show message
+   //              self.mostrarAgreement();
+   //          }else{
+   //              self.nongplapps=false;
+   //          }
+   //      //console.log('setting nongplapps '+self.nongplapps)
+   //      //self.set_nongplapps(self.nongplapps);
+   //      }
+   //  );
    
    $("#llx_netinstall_do_stats").off("click");
    $("#llx_netinstall_do_stats").on("click", function(){
@@ -348,10 +348,10 @@ LlxNetinstall.prototype.showUI=function showUI(){
       var n4dclass="NetinstallManager";
       var n4dmethod="setNetinstall";
 
-      var arglist=[self.netinstall.toString(), self.unattended_netinstall.toString(), self.netinstall_stats.toString(), self.nongplapps.toString(), self.normal_install.toString()];
+      var arglist=[self.netinstall.toString(), self.unattended_netinstall.toString(), self.netinstall_stats.toString(), self.normal_install.toString()];
       console.log('Setting netinstall '+JSON.stringify(arglist))
       var test=arglist;
-      self.set_nongplapps(self.nongplapps);
+      // self.set_nongplapps(self.nongplapps);
       self.set_desktop_type(self.light_install);
       
       Utils.n4d(credentials, n4dclass, n4dmethod, arglist, function(response){

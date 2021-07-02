@@ -55,26 +55,8 @@
         },
         "get_force_classroom_stats": {
             "allowed_groups": [
-                "sudo",
-                "admins"
-            ]
-        },
-        "def": {
-            "allowed_groups": [
-                "sudo",
-                "admins"
-            ]
-        },
-        "install_nongpl": {
-            "allowed_groups": [
-                "sudo",
-                "admins"
-            ]
-        },
-        "END": {
-            "allowed_groups": [
-                "sudo",
-                "admins"
+                "*",
+                "anonymous"
             ]
         },
         "set_desktop_type": {
