@@ -167,7 +167,7 @@ class NetinstallManager:
         params = tuple((obj.get(k) for k in self.netfile_keys))
         ret=self.setNetinstall(*params)
         if ret.get('status') != 0:
-            return n4d.responses.build_failed_call_response(ret_msg='Error setting json file calling setNetinstall, '.format(ret.get('msg')))
+            return n4d.responses.build_failed_call_response(ret_msg='Error setting json file calling setNetinstall, {}'.format(ret.get('msg')))
         return n4d.responses.build_successful_call_response(obj)
     # END def GetNetInstall
 
