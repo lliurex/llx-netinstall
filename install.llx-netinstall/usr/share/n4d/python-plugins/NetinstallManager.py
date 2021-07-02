@@ -29,7 +29,7 @@ class NetinstallManager:
         #self.imagepath="/etc/ltsp/bootopts/"
         self.imagepath="/etc/llxnetinstall"
         self.netfile = os.path.realpath(os.path.join(self.imagepath,"netinstall.json"))
-        self.netfile_keys = ['netinstall_boot','netinstall_unattended','netinstall_stats','nongplapps','normal_install']
+        self.netfile_keys = ['netinstall_boot','netinstall_unattended','netinstall_stats','normal_install']
         self.mirror_var = "/var/lib/n4d/variables-dir/LLIUREXMIRROR"
         self.mirror_var = self.get_mirror_var()
         self.distro = 'llx21'
