@@ -177,20 +177,20 @@ class NetinstallManager:
         sets option for netinstall int bootopt.json (status and unattended install)
         '''
         try:
-            if not self.mirror_var or not isinstance(self.mirror_var,dict):
-                return n4d.responses.build_failed_call_response(ret_msg='LLIUREXMIRROR variable not defined')
-            if self.distro not in self.mirror_var:
-                return n4d.responses.build_failed_call_response(ret_msg='Mirror is not available')
-            mirror_values = self.mirror_var.get(self.distro)
-            if not mirror_values:
-                return n4d.responses.build_failed_call_response(ret_msg='Mirror for {} not available'.format(self.distro))
-            mirror_progress = str(mirror_values.get('progress'))
-            mirror_status = mirror_values.get('status_mirror')
-            if not mirror_progress or not mirror_status:
-                return n4d.responses.build_failed_call_response(ret_msg='Mirror values without progress or status')
-            mirror_progress = str(mirror_progress)
-            if mirror_progress != "100" or str(mirror_status).lower() != 'ok':
-                return n4d.responses.build_failed_call_response(ret_msg='Incomplete mirror')
+            # if not self.mirror_var or not isinstance(self.mirror_var,dict):
+            #     return n4d.responses.build_failed_call_response(ret_msg='LLIUREXMIRROR variable not defined')
+            # if self.distro not in self.mirror_var:
+            #     return n4d.responses.build_failed_call_response(ret_msg='Mirror is not available')
+            # mirror_values = self.mirror_var.get(self.distro)
+            # if not mirror_values:
+            #     return n4d.responses.build_failed_call_response(ret_msg='Mirror for {} not available'.format(self.distro))
+            # mirror_progress = str(mirror_values.get('progress'))
+            # mirror_status = mirror_values.get('status_mirror')
+            # if not mirror_progress or not mirror_status:
+            #     return n4d.responses.build_failed_call_response(ret_msg='Mirror values without progress or status')
+            # mirror_progress = str(mirror_progress)
+            # if mirror_progress != "100" or str(mirror_status).lower() != 'ok':
+            #     return n4d.responses.build_failed_call_response(ret_msg='Incomplete mirror')
             
             if (str(status).lower()=="true" or str(status).lower()=="false"):
                 with open(self.netfile,'w') as fp:
