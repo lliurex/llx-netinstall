@@ -1,3 +1,9 @@
+llx-netinstall (1.1.10) focal; urgency=medium
+
+  * Remove blocking checkings
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Fri, 02 Jul 2021 13:16:10 +0200
+
 llx-netinstall (1.1.9) focal; urgency=medium
 
   * Fix postinst enabling n4d module
