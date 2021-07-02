@@ -1,3 +1,10 @@
+llx-netinstall (1.1.11) focal; urgency=medium
+
+  * Remove nongpl install apps
+  * Fix layout images into admin-center
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Fri, 02 Jul 2021 13:56:39 +0200
+
 llx-netinstall (1.1.10) focal; urgency=medium
 
   * Remove blocking checkings
