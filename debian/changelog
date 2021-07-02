@@ -1,3 +1,9 @@
+llx-netinstall (1.1.12) focal; urgency=medium
+
+  * Fix call
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Fri, 02 Jul 2021 14:06:48 +0200
+
 llx-netinstall (1.1.11) focal; urgency=medium
 
   * Remove nongpl install apps
