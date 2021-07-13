@@ -1,3 +1,9 @@
+llx-netinstall (1.1.14) focal; urgency=medium
+
+  * Fix LLIUREXMIRROR variable condition
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Tue, 13 Jul 2021 11:30:53 +0200
+
 llx-netinstall (1.1.13) focal; urgency=medium
 
   * Use lliurex-mirror to check mirror availability
