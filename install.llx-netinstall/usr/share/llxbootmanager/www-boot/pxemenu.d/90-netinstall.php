@@ -7,30 +7,30 @@ $mirror_var="/var/lib/n4d/variables/LLIUREXMIRROR";
 $filename="/etc/llxnetinstall/netinstall.json";
 $type_install='';
 
-if (is_file($mirror_var)){
-    try{
-        // $fp = file_get_contents($mirror_var);
-        // $content = json_decode($fp,true);
-        // if (array_key_exists('LLIUREXMIRROR',$content) && array_key_exists('value',$content['LLIUREXMIRROR']) && array_key_exists($distribution,$content['LLIUREXMIRROR']['value'])){
-        //     $data_mirror = $content['LLIUREXMIRROR']['value'][$distribution];
-        //     if (array_key_exists('status_mirror',$data_mirror) && array_key_exists('progress',$data_mirror) && strtolower($data_mirror['status_mirror']) == 'ok' && $data_mirror['progress'] == 100 ){
-        //         $mirror_installed = true;
-        //     }else{
-        //         $mirror_installed = false;
-        //     }
-        // }else{
-        //     $mirror_installed = false;
-        // }
-        $ret = exec('/usr/bin/lliurex-version -m');
-        if (strtolower($ret) == "true"){
-            $mirror_installed = true;
-        }else{
-            $mirror_installed = false;
-        }
-    }catch(Exception $e){
+//if (is_file($mirror_var)){
+try{
+    // $fp = file_get_contents($mirror_var);
+    // $content = json_decode($fp,true);
+    // if (array_key_exists('LLIUREXMIRROR',$content) && array_key_exists('value',$content['LLIUREXMIRROR']) && array_key_exists($distribution,$content['LLIUREXMIRROR']['value'])){
+    //     $data_mirror = $content['LLIUREXMIRROR']['value'][$distribution];
+    //     if (array_key_exists('status_mirror',$data_mirror) && array_key_exists('progress',$data_mirror) && strtolower($data_mirror['status_mirror']) == 'ok' && $data_mirror['progress'] == 100 ){
+    //         $mirror_installed = true;
+    //     }else{
+    //         $mirror_installed = false;
+    //     }
+    // }else{
+    //     $mirror_installed = false;
+    // }
+    $ret = exec('/usr/bin/lliurex-version -m');
+    if (strtolower($ret) == "true"){
+        $mirror_installed = true;
+    }else{
         $mirror_installed = false;
     }
+}catch(Exception $e){
+    $mirror_installed = false;
 }
+//}
 
 $json=array();
 if (is_file($filename)){
