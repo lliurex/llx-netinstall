@@ -64,19 +64,20 @@ if (is_array($json) && array_key_exists("netinstall_boot",$json) && strtolower($
 	        $put_amd64=true;
         }
   
-        $str_pxelinux="";
-        if (strtolower($json["netinstall_stats"])=="true"){
-            $str_pxelinux="pxelinux-stats.cfg";
-        }else{
-            $str_pxelinux="pxelinux.cfg";
-        }
+        //$str_pxelinux="";
+        //if (strtolower($json["netinstall_stats"])=="true"){
+        //    $str_pxelinux="pxelinux-stats.cfg";
+        //}else{
+        //    $str_pxelinux="pxelinux.cfg";
+        //}
    
         if ($put_amd64){
-            $MenuEntry->menuString.="\n# Netinst: Install Menu
-            LABEL Instal.la LliureX en aquest ordinador amd64
-            MENU LABEL Instal.la LliureX en aquest ordinador amd64
-            KERNEL pxe-ltsp/netinstall/ubuntu-installer/amd64/boot-screens/vesamenu.c32
-            CONFIG pxe-ltsp/netinstall/ubuntu-installer/amd64/$str_pxelinux/default pxe-ltsp/netinstall/\n";
+            $modes=array('client','desktop','infantil');
+            $cfg="";
+            foreach ($modes as $mode){
+                $cfg.="\nLABEL Instala Lliurex '$mode' en aquest ordinador amd64\nKERNEL ../../netinstall/amd64/linux\nAPPEND video=vesa:ywrap,mtrr vga=788 initrd=../../netinstall/amd64/initrd.lz auto=true language=es country=ES priority=critical url=preseed/$mode-stats.cfg net.ifnames=0 biosdevname=0\n";
+            }
+            $MenuEntry->menuString.="\nMENU BEGIN Net-install\nMENU TITLE Net-install\n".trim($cfg)."\nMENU END\n";
         }
 
         if ($put_amd64){
